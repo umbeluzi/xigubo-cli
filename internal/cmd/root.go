@@ -21,7 +21,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/getumbeluzi/plumber-cli/internal"
+	"github.com/getumbeluzi/xibugo-cli/internal"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -45,7 +45,7 @@ const (
 
 func NewCmdRoot(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:          "plumber",
+		Use:          "xibugo",
 		SilenceUsage: true,
 	}
 
@@ -88,8 +88,8 @@ func lookupConfigFiles() {
 			cobra.CheckErr(err)
 		}
 
-		viper.AddConfigPath(filepath.Join(configHome, "plumber"))
-		viper.AddConfigPath("/etc/plumber")
+		viper.AddConfigPath(filepath.Join(configHome, "xibugo"))
+		viper.AddConfigPath("/etc/xibugo")
 		viper.SetConfigType(defaultConfigFileFormat)
 
 		if profile != "" {

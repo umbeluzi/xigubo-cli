@@ -20,8 +20,8 @@ import (
 	"runtime"
 
 	"github.com/MakeNowJust/heredoc/v2"
-	"github.com/getumbeluzi/plumber-cli/internal"
-	"github.com/getumbeluzi/plumber-cli/internal/build"
+	"github.com/getumbeluzi/xibugo-cli/internal"
+	"github.com/getumbeluzi/xibugo-cli/internal/build"
 	"github.com/spf13/cobra"
 )
 

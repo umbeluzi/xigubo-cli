@@ -23,8 +23,8 @@ import (
 )
 
 const (
-	Production = "https://api.plumber.com"
-	Sandbox    = "https://api.sandbox.plumber.com"
+	Production = "https://api.xibugo.com"
+	Sandbox    = "https://api.sandbox.xibugo.com"
 )
 
 func New() (*Config, error) {

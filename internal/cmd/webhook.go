@@ -18,8 +18,8 @@ package cmd
 
 import (
 	"github.com/MakeNowJust/heredoc/v2"
-	"github.com/getumbeluzi/plumber-cli/internal"
-	"github.com/getumbeluzi/plumber-cli/internal/config"
+	"github.com/getumbeluzi/xibugo-cli/internal"
+	"github.com/getumbeluzi/xibugo-cli/internal/config"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -51,8 +51,8 @@ func NewCmdWebhookList(opts *internal.CommandOptions) *cobra.Command {
 		Use:   "list",
 		Short: "List webhooks",
 		Example: heredoc.Doc(`
-			plumber webhook list
-			plumber webhook list --sandbox
+			xibugo webhook list
+			xibugo webhook list --sandbox
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -82,8 +82,8 @@ func NewCmdWebhookDelete(opts *internal.CommandOptions) *cobra.Command {
 		Short: "Delete a webhook",
 		Args:  cobra.NoArgs,
 		Example: heredoc.Doc(`
-			plumber webhook delete --webhook example.com
-			plumber webhook delete --webhook example.com --sandbox
+			xibugo webhook delete --webhook example.com
+			xibugo webhook delete --webhook example.com --sandbox
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -112,8 +112,8 @@ func NewCmdWebhookCreate(opts *internal.CommandOptions) *cobra.Command {
 		Use:   "create",
 		Short: "Create a webhook",
 		Example: heredoc.Doc(`
-			plumber webhook new --webhook example.com
-			plumber webhook new --webhook example.com --sandbox
+			xibugo webhook new --webhook example.com
+			xibugo webhook new --webhook example.com --sandbox
 		`),
 		Args: cobra.MaximumNArgs(1),
 		PreRun: func(cmd *cobra.Command, args []string) {
@@ -143,8 +143,8 @@ func NewCmdWebhookGet(opts *internal.CommandOptions) *cobra.Command {
 		Use:   "show",
 		Short: "Retrieve a webhook",
 		Example: heredoc.Doc(`
-			plumber webhook show --webhook example.com
-			plumber webhook show --webhook example.com --sandbox
+			xibugo webhook show --webhook example.com
+			xibugo webhook show --webhook example.com --sandbox
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {

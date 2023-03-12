@@ -25,8 +25,8 @@ import (
 	"strings"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/getumbeluzi/plumber-cli/internal"
-	"github.com/getumbeluzi/plumber-cli/internal/config"
+	"github.com/getumbeluzi/xibugo-cli/internal"
+	"github.com/getumbeluzi/xibugo-cli/internal/config"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -39,8 +39,8 @@ const (
 )
 
 var (
-	prodBaseURL    = "https://api.plumber.com"
-	sandboxBaseURL = "https://api.sandbox.plumber.com"
+	prodBaseURL    = "https://api.xibugo.com"
+	sandboxBaseURL = "https://api.sandbox.xibugo.com"
 
 	configProps = map[string]struct{}{
 		"account":      {},
@@ -135,7 +135,7 @@ func NewCmdConfigInit(opts *internal.CommandOptions) *cobra.Command {
 				v.Set(flagSandbox, cfg.Sandbox)
 			}
 
-			cfgPath := filepath.Join(home, "plumber", fmt.Sprintf("%s.%s", profile, strings.ToLower(ext)))
+			cfgPath := filepath.Join(home, "xibugo", fmt.Sprintf("%s.%s", profile, strings.ToLower(ext)))
 			if err := v.WriteConfigAs(cfgPath); err != nil {
 				return err
 			}

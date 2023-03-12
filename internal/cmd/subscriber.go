@@ -18,8 +18,8 @@ package cmd
 
 import (
 	"github.com/MakeNowJust/heredoc/v2"
-	"github.com/getumbeluzi/plumber-cli/internal"
-	"github.com/getumbeluzi/plumber-cli/internal/config"
+	"github.com/getumbeluzi/xibugo-cli/internal"
+	"github.com/getumbeluzi/xibugo-cli/internal/config"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -44,8 +44,8 @@ func NewCmdSubscriberList(opts *internal.CommandOptions) *cobra.Command {
 		Use:   "list",
 		Short: "List subscribers",
 		Example: heredoc.Doc(`
-			plumber subscriber list
-			plumber subscriber list --sandbox
+			xibugo subscriber list
+			xibugo subscriber list --sandbox
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -75,8 +75,8 @@ func NewCmdSubscriberDelete(opts *internal.CommandOptions) *cobra.Command {
 		Short: "Delete a subscriber",
 		Args:  cobra.NoArgs,
 		Example: heredoc.Doc(`
-			plumber subscriber delete --subscriber example.com
-			plumber subscriber delete --subscriber example.com --sandbox
+			xibugo subscriber delete --subscriber example.com
+			xibugo subscriber delete --subscriber example.com --sandbox
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -105,8 +105,8 @@ func NewCmdSubscriberCreate(opts *internal.CommandOptions) *cobra.Command {
 		Use:   "create",
 		Short: "Create a subscriber",
 		Example: heredoc.Doc(`
-			plumber subscriber new --subscriber example.com
-			plumber subscriber new --subscriber example.com --sandbox
+			xibugo subscriber new --subscriber example.com
+			xibugo subscriber new --subscriber example.com --sandbox
 		`),
 		Args: cobra.MaximumNArgs(1),
 		PreRun: func(cmd *cobra.Command, args []string) {
@@ -136,8 +136,8 @@ func NewCmdSubscriberGet(opts *internal.CommandOptions) *cobra.Command {
 		Use:   "show",
 		Short: "Retrieve a subscriber",
 		Example: heredoc.Doc(`
-			plumber subscriber show --subscriber example.com
-			plumber subscriber show --subscriber example.com --sandbox
+			xibugo subscriber show --subscriber example.com
+			xibugo subscriber show --subscriber example.com --sandbox
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {

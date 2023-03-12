@@ -17,8 +17,8 @@
 package cmd
 
 import (
-	"github.com/getumbeluzi/plumber-cli/internal"
-	"github.com/getumbeluzi/plumber-cli/internal/config"
+	"github.com/getumbeluzi/xibugo-cli/internal"
+	"github.com/getumbeluzi/xibugo-cli/internal/config"
 	"github.com/spf13/cobra"
 )
 

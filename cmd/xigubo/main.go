@@ -19,8 +19,8 @@ package main
 import (
 	"os"
 
-	"github.com/getumbeluzi/plumber-cli/internal"
-	"github.com/getumbeluzi/plumber-cli/internal/cmd"
+	"github.com/getumbeluzi/xibugo-cli/internal"
+	"github.com/getumbeluzi/xibugo-cli/internal/cmd"
 )
 
 func main() {
