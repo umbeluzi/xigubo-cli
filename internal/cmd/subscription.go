@@ -24,34 +24,27 @@ import (
 	"github.com/spf13/viper"
 )
 
-const (
-	formatJSON  = "json"
-	formatYAML  = "yaml"
-	formatTable = "table"
-	formatText  = "text"
-)
-
-func NewCmdWebhook(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdSubscription(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "webhook",
-		Short:   "Manage webhooks",
-		Aliases: []string{"webhooks"},
+		Use:     "subscription",
+		Short:   "Manage subscriptions",
+		Aliases: []string{"subscriptions"},
 	}
 
-	cmd.AddCommand(NewCmdWebhookList(opts))
-	cmd.AddCommand(NewCmdWebhookDelete(opts))
-	cmd.AddCommand(NewCmdWebhookCreate(opts))
-	cmd.AddCommand(NewCmdWebhookGet(opts))
+	cmd.AddCommand(NewCmdSubscriptionList(opts))
+	cmd.AddCommand(NewCmdSubscriptionDelete(opts))
+	cmd.AddCommand(NewCmdSubscriptionCreate(opts))
+	cmd.AddCommand(NewCmdSubscriptionGet(opts))
 
 	return cmd
 }
 
-func NewCmdWebhookList(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdSubscriptionList(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "list",
-		Short: "List webhooks",
+		Short: "List subscriptions",
 		Example: heredoc.Doc(`
-			xibugo webhook list
+			xibugo subscription list
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -75,13 +68,13 @@ func NewCmdWebhookList(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdWebhookDelete(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdSubscriptionDelete(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "delete",
-		Short: "Delete a webhook",
+		Short: "Delete a subscription",
 		Args:  cobra.NoArgs,
 		Example: heredoc.Doc(`
-			xibugo webhook delete 123
+			xibugo subscription delete 123
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -105,12 +98,12 @@ func NewCmdWebhookDelete(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdWebhookCreate(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdSubscriptionCreate(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "create",
-		Short: "Create a webhook",
+		Short: "Create a subscription",
 		Example: heredoc.Doc(`
-			xibugo webhook create
+			xibugo subscription create --webhook 123
 		`),
 		Args: cobra.MaximumNArgs(1),
 		PreRun: func(cmd *cobra.Command, args []string) {
@@ -135,12 +128,13 @@ func NewCmdWebhookCreate(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdWebhookGet(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdSubscriptionGet(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "get",
-		Short: "Retrieve a webhook",
+		Short: "Retrieve a subscription",
 		Example: heredoc.Doc(`
-			xibugo webhook get 123
+			xibugo subscription get 123
+			xibugo subscription get 123
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {

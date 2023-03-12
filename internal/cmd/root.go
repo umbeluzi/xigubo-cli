@@ -52,7 +52,8 @@ func NewCmdRoot(opts *internal.CommandOptions) *cobra.Command {
 	cmd.AddCommand(NewCmdConfig(opts))
 	cmd.AddCommand(NewCmdWhoami(opts))
 	cmd.AddCommand(NewCmdWebhook(opts))
-	cmd.AddCommand(NewCmdSubscriber(opts))
+	cmd.AddCommand(NewCmdSubscription(opts))
+	cmd.AddCommand(NewCmdEvent(opts))
 	cmd.AddCommand(NewCmdVersion(opts))
 
 	cobra.OnInitialize(lookupConfigFiles)

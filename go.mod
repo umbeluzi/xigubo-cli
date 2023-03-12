@@ -1,4 +1,4 @@
-module github.com/getumbeluzi/plumber-cli
+module github.com/getumbeluzi/xibugo-cli
 
 go 1.19
 

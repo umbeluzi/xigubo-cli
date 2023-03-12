@@ -24,28 +24,27 @@ import (
 	"github.com/spf13/viper"
 )
 
-func NewCmdSubscriber(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdEvent(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "subscriber",
-		Short:   "Manage subscribers",
-		Aliases: []string{"subscribers"},
+		Use:     "event",
+		Short:   "Manage events",
+		Aliases: []string{"events"},
 	}
 
-	cmd.AddCommand(NewCmdSubscriberList(opts))
-	cmd.AddCommand(NewCmdSubscriberDelete(opts))
-	cmd.AddCommand(NewCmdSubscriberCreate(opts))
-	cmd.AddCommand(NewCmdSubscriberGet(opts))
+	cmd.AddCommand(NewCmdEventList(opts))
+	cmd.AddCommand(NewCmdEventDelete(opts))
+	cmd.AddCommand(NewCmdEventCreate(opts))
+	cmd.AddCommand(NewCmdEventGet(opts))
 
 	return cmd
 }
 
-func NewCmdSubscriberList(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdEventList(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "list",
-		Short: "List subscribers",
+		Short: "List events",
 		Example: heredoc.Doc(`
-			xibugo subscriber list
-			xibugo subscriber list --sandbox
+			xibugo event list
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -69,14 +68,13 @@ func NewCmdSubscriberList(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdSubscriberDelete(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdEventDelete(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "delete",
-		Short: "Delete a subscriber",
+		Short: "Delete a event",
 		Args:  cobra.NoArgs,
 		Example: heredoc.Doc(`
-			xibugo subscriber delete --subscriber example.com
-			xibugo subscriber delete --subscriber example.com --sandbox
+			xibugo event delete 123
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -100,13 +98,12 @@ func NewCmdSubscriberDelete(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdSubscriberCreate(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdEventCreate(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "create",
-		Short: "Create a subscriber",
+		Short: "Create a event",
 		Example: heredoc.Doc(`
-			xibugo subscriber new --subscriber example.com
-			xibugo subscriber new --subscriber example.com --sandbox
+			xibugo event create --webhook 123
 		`),
 		Args: cobra.MaximumNArgs(1),
 		PreRun: func(cmd *cobra.Command, args []string) {
@@ -131,13 +128,13 @@ func NewCmdSubscriberCreate(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdSubscriberGet(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdEventGet(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "show",
-		Short: "Retrieve a subscriber",
+		Use:   "get",
+		Short: "Retrieve a event",
 		Example: heredoc.Doc(`
-			xibugo subscriber show --subscriber example.com
-			xibugo subscriber show --subscriber example.com --sandbox
+			xibugo event get 123
+			xibugo event get 123
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
