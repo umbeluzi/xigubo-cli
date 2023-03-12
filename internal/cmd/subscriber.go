@@ -24,35 +24,28 @@ import (
 	"github.com/spf13/viper"
 )
 
-const (
-	formatJSON  = "json"
-	formatYAML  = "yaml"
-	formatTable = "table"
-	formatText  = "text"
-)
-
-func NewCmdWebhook(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdSubscriber(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "webhook",
-		Short:   "Manage webhooks",
-		Aliases: []string{"webhooks"},
+		Use:     "subscriber",
+		Short:   "Manage subscribers",
+		Aliases: []string{"subscribers"},
 	}
 
-	cmd.AddCommand(NewCmdWebhookList(opts))
-	cmd.AddCommand(NewCmdWebhookDelete(opts))
-	cmd.AddCommand(NewCmdWebhookCreate(opts))
-	cmd.AddCommand(NewCmdWebhookGet(opts))
+	cmd.AddCommand(NewCmdSubscriberList(opts))
+	cmd.AddCommand(NewCmdSubscriberDelete(opts))
+	cmd.AddCommand(NewCmdSubscriberCreate(opts))
+	cmd.AddCommand(NewCmdSubscriberGet(opts))
 
 	return cmd
 }
 
-func NewCmdWebhookList(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdSubscriberList(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "list",
-		Short: "List webhooks",
+		Short: "List subscribers",
 		Example: heredoc.Doc(`
-			plumber webhook list
-			plumber webhook list --sandbox
+			plumber subscriber list
+			plumber subscriber list --sandbox
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -76,14 +69,14 @@ func NewCmdWebhookList(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdWebhookDelete(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdSubscriberDelete(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "delete",
-		Short: "Delete a webhook",
+		Short: "Delete a subscriber",
 		Args:  cobra.NoArgs,
 		Example: heredoc.Doc(`
-			plumber webhook delete --webhook example.com
-			plumber webhook delete --webhook example.com --sandbox
+			plumber subscriber delete --subscriber example.com
+			plumber subscriber delete --subscriber example.com --sandbox
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -107,13 +100,13 @@ func NewCmdWebhookDelete(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdWebhookCreate(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdSubscriberCreate(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "create",
-		Short: "Create a webhook",
+		Short: "Create a subscriber",
 		Example: heredoc.Doc(`
-			plumber webhook new --webhook example.com
-			plumber webhook new --webhook example.com --sandbox
+			plumber subscriber new --subscriber example.com
+			plumber subscriber new --subscriber example.com --sandbox
 		`),
 		Args: cobra.MaximumNArgs(1),
 		PreRun: func(cmd *cobra.Command, args []string) {
@@ -138,13 +131,13 @@ func NewCmdWebhookCreate(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdWebhookGet(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdSubscriberGet(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "show",
-		Short: "Retrieve a webhook",
+		Short: "Retrieve a subscriber",
 		Example: heredoc.Doc(`
-			plumber webhook show --webhook example.com
-			plumber webhook show --webhook example.com --sandbox
+			plumber subscriber show --subscriber example.com
+			plumber subscriber show --subscriber example.com --sandbox
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
