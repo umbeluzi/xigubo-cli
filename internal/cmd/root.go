@@ -54,18 +54,15 @@ func NewCmdRoot(opts *internal.CommandOptions) *cobra.Command {
 	cmd.AddCommand(NewCmdWebhook(opts))
 	cmd.AddCommand(NewCmdSubscription(opts))
 	cmd.AddCommand(NewCmdEvent(opts))
+	cmd.AddCommand(NewCmdEventType(opts))
 	cmd.AddCommand(NewCmdVersion(opts))
 
 	cobra.OnInitialize(lookupConfigFiles)
 
-	cmd.PersistentFlags().String(flagAccount, "", "Account")
 	cmd.PersistentFlags().String(flagBaseURL, "", "Base URL")
 	cmd.PersistentFlags().String(flagAccessToken, "", "Access token")
-	cmd.PersistentFlags().Bool(flagSandbox, false, "Sandbox environment")
 	cmd.PersistentFlags().StringVarP(&configFile, flagConfig, "c", "", "Configuration file")
 	cmd.PersistentFlags().StringVar(&profile, flagProfile, "default", "Profile")
-
-	cmd.MarkFlagsMutuallyExclusive(flagBaseURL, flagSandbox)
 
 	viper.SetEnvPrefix(envPrefix)
 	if err := viper.BindPFlags(cmd.PersistentFlags()); err != nil {

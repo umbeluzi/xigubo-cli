@@ -24,29 +24,27 @@ import (
 	"github.com/spf13/viper"
 )
 
-func NewCmdEvent(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdEventType(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:     "event",
-		Short:   "Manage events",
-		Aliases: []string{"events"},
+		Use:     "event-type",
+		Short:   "Manage event types",
+		Aliases: []string{"event-types"},
 	}
 
-	cmd.AddCommand(NewCmdEventList(opts))
-	cmd.AddCommand(NewCmdEventDelete(opts))
-	cmd.AddCommand(NewCmdEventCreate(opts))
-	cmd.AddCommand(NewCmdEventCancel(opts))
-	cmd.AddCommand(NewCmdEventResend(opts))
-	cmd.AddCommand(NewCmdEventGet(opts))
+	cmd.AddCommand(NewCmdEventTypeList(opts))
+	cmd.AddCommand(NewCmdEventTypeDelete(opts))
+	cmd.AddCommand(NewCmdEventTypeCreate(opts))
+	cmd.AddCommand(NewCmdEventTypeGet(opts))
 
 	return cmd
 }
 
-func NewCmdEventList(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdEventTypeList(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "list",
-		Short: "List events",
+		Short: "List event types",
 		Example: heredoc.Doc(`
-			xibugo event list
+			xibugo event-type list
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -70,13 +68,13 @@ func NewCmdEventList(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdEventDelete(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdEventTypeDelete(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "delete",
-		Short: "Delete an event type",
+		Short: "Delete an event type type",
 		Args:  cobra.NoArgs,
 		Example: heredoc.Doc(`
-			xibugo event delete 123
+			xibugo event-type delete 123
 		`),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
@@ -100,12 +98,12 @@ func NewCmdEventDelete(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdEventCreate(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdEventTypeCreate(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "create",
-		Short: "Create an event type",
+		Short: "Create an event type type",
 		Example: heredoc.Doc(`
-			xibugo event create --webhook 123
+			xibugo event-type create --webhook 123
 		`),
 		Args: cobra.MaximumNArgs(1),
 		PreRun: func(cmd *cobra.Command, args []string) {
@@ -130,74 +128,14 @@ func NewCmdEventCreate(opts *internal.CommandOptions) *cobra.Command {
 	return cmd
 }
 
-func NewCmdEventGet(opts *internal.CommandOptions) *cobra.Command {
+func NewCmdEventTypeGet(opts *internal.CommandOptions) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "get",
-		Short: "Retrieve an event type",
+		Short: "Retrieve an event type type",
 		Example: heredoc.Doc(`
-			xibugo event get 123
-			xibugo event get 123
+			xibugo event-type get 123
+			xibugo event-type get 123
 		`),
-		PreRun: func(cmd *cobra.Command, args []string) {
-			if err := viper.BindPFlags(cmd.Flags()); err != nil {
-				panic(err)
-			}
-		},
-		RunE: func(cmd *cobra.Command, args []string) error {
-			internal.SetupIO(cmd, opts)
-
-			cfg, err := config.New()
-			if err != nil {
-				return err
-			}
-
-			cmd.Println(cfg)
-
-			return nil
-		},
-	}
-
-	return cmd
-}
-
-func NewCmdEventCancel(opts *internal.CommandOptions) *cobra.Command {
-	cmd := &cobra.Command{
-		Use:   "cancel",
-		Short: "Cancel an event",
-		Example: heredoc.Doc(`
-			xibugo event cancel 123
-		`),
-		Args: cobra.MaximumNArgs(1),
-		PreRun: func(cmd *cobra.Command, args []string) {
-			if err := viper.BindPFlags(cmd.Flags()); err != nil {
-				panic(err)
-			}
-		},
-		RunE: func(cmd *cobra.Command, args []string) error {
-			internal.SetupIO(cmd, opts)
-
-			cfg, err := config.New()
-			if err != nil {
-				return err
-			}
-
-			cmd.Println(cfg)
-
-			return nil
-		},
-	}
-
-	return cmd
-}
-
-func NewCmdEventResend(opts *internal.CommandOptions) *cobra.Command {
-	cmd := &cobra.Command{
-		Use:   "resend",
-		Short: "Resend an event",
-		Example: heredoc.Doc(`
-			xibugo event resend 123
-		`),
-		Args: cobra.MaximumNArgs(1),
 		PreRun: func(cmd *cobra.Command, args []string) {
 			if err := viper.BindPFlags(cmd.Flags()); err != nil {
 				panic(err)

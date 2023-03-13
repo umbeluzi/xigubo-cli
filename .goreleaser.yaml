@@ -1,3 +1,4 @@
+---
 # Copyright 2023 Edson Michaque
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +15,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-project_name: plumber-cli
+project_name: xigubo-cli
 
 before:
   hooks:
@@ -33,11 +34,11 @@ builds:
     goarch:
       - amd64
       - arm64
-    main: ./cmd/plumber/main.go
-    binary: plumber
+    main: ./cmd/xigubo/main.go
+    binary: xigubo
     ldflags:
-      - "-s -w -X github.com/getumbeluzi/plumber-cli/internal/build.Version={{.Version}}"
-      - "-s -w -X github.com/getumbeluzi/plumber-cli/internal/build.Date={{.Date}}"
+      - "-s -w -X github.com/getumbeluzi/xigubo-cli/internal/build.Version={{.Version}}"
+      - "-s -w -X github.com/getumbeluzi/xigubo-cli/internal/build.Date={{.Date}}"
 
   - id: darwin
     env:
@@ -47,11 +48,11 @@ builds:
     goarch:
       - amd64
       - arm64
-    main: ./cmd/plumber/main.go
-    binary: plumber
+    main: ./cmd/xigubo/main.go
+    binary: xigubo
     ldflags:
-      - "-s -w -X github.com/getumbeluzi/plumber-cli/internal/build.Version={{.Version}}"
-      - "-s -w -X github.com/getumbeluzi/plumber-cli/internal/build.Date={{.Date}}"
+      - "-s -w -X github.com/getumbeluzi/xigubo-cli/internal/build.Version={{.Version}}"
+      - "-s -w -X github.com/getumbeluzi/xigubo-cli/internal/build.Date={{.Date}}"
 
   - id: windows
     env:
@@ -61,11 +62,11 @@ builds:
     goarch:
       - amd64
       - arm64
-    main: ./cmd/plumber/main.go
-    binary: bin/plumber
+    main: ./cmd/xigubo/main.go
+    binary: bin/xigubo
     ldflags:
-      - "-s -w -X github.com/getumbeluzi/plumber-cli/internal/build.Version={{.Version}}"
-      - "-s -w -X github.com/getumbeluzi/plumber-cli/internal/build.Date={{.Date}}"
+      - "-s -w -X github.com/getumbeluzi/xigubo-cli/internal/build.Version={{.Version}}"
+      - "-s -w -X github.com/getumbeluzi/xigubo-cli/internal/build.Date={{.Date}}"
 
 archives:
   - format: tar.gz
@@ -94,7 +95,7 @@ changelog:
 nfpms:
   - license: Apache-2.0
     maintainer: Edson Michaque
-    homepage: https://github.com/getumbeluzi/plumber-cli
+    homepage: https://github.com/getumbeluzi/xigubo-cli
     bindir: /usr
     dependencies:
       - git
@@ -111,9 +112,9 @@ dockers:
     goos: linux
     goarch: amd64
     image_templates:
-      - "getumbeluzi/plumber-cli:latest-amd64"
-      - "getumbeluzi/plumber-cli:{{ .Major }}.{{ .Minor }}.{{ .Patch }}-amd64"
-      - "getumbeluzi/plumber-cli:{{ .Major }}.{{ .Minor }}-amd64"
+      - "umbeluzi/xigubo-cli:latest-amd64"
+      - "umbeluzi/xigubo-cli:{{ .Major }}.{{ .Minor }}.{{ .Patch }}-amd64"
+      - "umbeluzi/xigubo-cli:{{ .Major }}.{{ .Minor }}-amd64"
 
     skip_push: false
     dockerfile: Dockerfile
@@ -132,9 +133,9 @@ dockers:
     goos: linux
     goarch: arm64
     image_templates:
-      - "getumbeluzi/plumber-cli:latest-arm64"
-      - "getumbeluzi/plumber-cli:{{ .Major }}.{{ .Minor }}.{{ .Patch }}-arm64"
-      - "getumbeluzi/plumber-cli:{{ .Major }}.{{ .Minor }}-arm64"
+      - "umbeluzi/xigubo-cli:latest-arm64"
+      - "umbeluzi/xigubo-cli:{{ .Major }}.{{ .Minor }}.{{ .Patch }}-arm64"
+      - "umbeluzi/xigubo-cli:{{ .Major }}.{{ .Minor }}-arm64"
 
     skip_push: false
     dockerfile: Dockerfile
@@ -149,23 +150,23 @@ dockers:
       - --tls-verify=false
 
 docker_manifests:
-  - name_template: getumbeluzi/plumber-cli:latest
+  - name_template: getumbeluzi/xigubo-cli:latest
     image_templates:
-      - "getumbeluzi/plumber-cli:latest-amd64"
-      - "getumbeluzi/plumber-cli:latest-arm64"
-  - name_template: getumbeluzi/plumber-cli:{{ .Major }}.{{ .Minor }}.{{ .Patch }}
+      - "umbeluzi/xigubo-cli:latest-amd64"
+      - "umbeluzi/xigubo-cli:latest-arm64"
+  - name_template: getumbeluzi/xigubo-cli:{{ .Major }}.{{ .Minor }}.{{ .Patch }}
     image_templates:
-      - "getumbeluzi/plumber-cli:{{ .Major }}.{{ .Minor }}.{{ .Patch }}-amd64"
-      - "getumbeluzi/plumber-cli:{{ .Major }}.{{ .Minor }}.{{ .Patch }}-arm64"
-  - name_template: getumbeluzi/plumber-cli:{{ .Major }}.{{ .Minor }}
+      - "umbeluzi/xigubo-cli:{{ .Major }}.{{ .Minor }}.{{ .Patch }}-amd64"
+      - "umbeluzi/xigubo-cli:{{ .Major }}.{{ .Minor }}.{{ .Patch }}-arm64"
+  - name_template: getumbeluzi/xigubo-cli:{{ .Major }}.{{ .Minor }}
     image_templates:
-      - "getumbeluzi/plumber-cli:{{ .Major }}.{{ .Minor }}-amd64"
-      - "getumbeluzi/plumber-cli:{{ .Major }}.{{ .Minor }}-arm64"
+      - "getumbeluzi/xigubo-cli:{{ .Major }}.{{ .Minor }}-amd64"
+      - "getumbeluzi/xigubo-cli:{{ .Major }}.{{ .Minor }}-arm64"
 
 snapcrafts:
   - name_template: '{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
-    summary:  A client for Plumber
-    description: A client for Plumber
+    summary:  A client for Xigubo
+    description: A client for Xigubo
     grade: stable
     publish: true
     license: Apache-2.0
