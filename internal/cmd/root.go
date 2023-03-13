@@ -38,7 +38,7 @@ const (
 	flagSandbox             = "sandbox"
 	flagProfile             = "profile"
 	flagConfig              = "config-file"
-	envPrefix               = "DNSIMPLE"
+	envPrefix               = "XIGUBO"
 	defaultProfile          = "default"
 	defaultConfigFileFormat = "yaml"
 )
@@ -77,7 +77,7 @@ func lookupConfigFiles() {
 
 	if configFile != "" {
 		viper.SetConfigFile(configFile)
-	} else if configFile := os.Getenv("DNSIMPLE_CONFIG_FILE"); configFile != "" {
+	} else if configFile := os.Getenv("XIGUBO_CONFIG_FILE"); configFile != "" {
 		viper.SetConfigFile(configFile)
 	} else {
 		configHome := os.Getenv("XDG_CONFIG_HOME")
@@ -92,7 +92,7 @@ func lookupConfigFiles() {
 
 		if profile != "" {
 			viper.SetConfigName(profile)
-		} else if configProfile := os.Getenv("DNSIMPLE_PROFILE"); configProfile != "" {
+		} else if configProfile := os.Getenv("XIGUBO_PROFILE"); configProfile != "" {
 			viper.SetConfigName(configProfile)
 		} else {
 			viper.SetConfigName(defaultProfile)
