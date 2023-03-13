@@ -33,9 +33,9 @@ func NewCmdVersion(opts *internal.CommandOptions) *cobra.Command {
 			internal.SetupIO(cmd, opts)
 
 			versionTemplate := heredoc.Doc(`
-				Plumber CLI version:       %v
-				Plumber API endpoint:      %v
-				Plumber API version:       %v
+				Xigubo CLI version:       %v
+				Xigubo API endpoint:      %v
+				Xigubo API version:       %v
 				OS/Arch (client):           %v/%v
 			`)
 
